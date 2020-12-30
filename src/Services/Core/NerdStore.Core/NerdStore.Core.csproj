@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Fluentvalidation" Version="9.3.0" />
     <PackageReference Include="Mediatr" Version="9.0.0" />
   </ItemGroup>
 
