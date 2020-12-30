@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using NerdStore.Catalogo.Domain;
 using NerdStore.Core.Data;
 
@@ -14,50 +16,45 @@ namespace NerdStore.Catalogo.Data.Repository
 
         public IUnitOfWork UnitOfWork => _context;
 
-        public void Adicionar(Produto produto)
+        // AddAsync vs Add => https://thesharperdev.com/ef-cores-addasync-v-add-method/
+        public void Adicionar(Produto produto) => _context.Produtos.Add(produto);
+
+        public void Adicionar(Categoria categoria) => _context.Categorias.Add(categoria);
+
+        public void Atualizar(Produto produto) => _context.Produtos.Update(produto);
+
+        public void Atualizar(Categoria categoria) => _context.Categorias.Update(categoria);
+
+
+        public async Task<IEnumerable<Categoria>> ObterCategorias()
         {
-            throw new NotImplementedException();
+            return await _context.Categorias.AsNoTracking()
+                    .ToListAsync();
         }
 
-        public void Adicionar(Categoria categoria)
+        public async Task<IEnumerable<Produto>> ObterPorCategoria(int codigo)
         {
-            throw new NotImplementedException();
+            return await _context.Produtos.AsNoTracking()
+                .Include(p => p.Categoria)
+                .Where(c => c.Categoria.Codigo == codigo)
+                .ToListAsync();
         }
 
-        public void Atualizar(Produto produto)
+        public async Task<Produto> ObterPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return await _context.Produtos.AsNoTracking()
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public void Atualizar(Categoria categoria)
+        public async Task<IEnumerable<Produto>> ObterTodos()
         {
-            throw new NotImplementedException();
-        }
-
-
-        public Task<IEnumerable<Categoria>> ObterCategorias()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Produto>> ObterPorCategoria(int codigo)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Produto> ObterPorId(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Produto>> ObterTodos()
-        {
-            throw new NotImplementedException();
+            return await _context.Produtos.AsNoTracking()
+                .ToListAsync();
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _context?.Dispose();
         }
     }
 }
