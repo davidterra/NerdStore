@@ -6,7 +6,7 @@ namespace NerdStore.Catalogo.Domain
     public interface IEstoqueService : IDisposable
     {
         Task<bool> DebitarEstoque(Guid produtoId, int quantidade);
-        Task<bool> ReportEstoque(Guid produtoId, int quantidade);
+        Task<bool> ReporEstoque(Guid produtoId, int quantidade);
     }
     public class EstoqueService : IEstoqueService
     {
@@ -29,7 +29,7 @@ namespace NerdStore.Catalogo.Domain
             return await _produtoRepository.UnitOfWork.Commit();
         }        
 
-        public async Task<bool> ReportEstoque(Guid produtoId, int quantidade)
+        public async Task<bool> ReporEstoque(Guid produtoId, int quantidade)
         {
             var produto = await _produtoRepository.ObterPorId(produtoId);
 
