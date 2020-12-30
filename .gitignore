@@ -34,3 +34,6 @@ bld/
 
 # vscode
 **/.vscode
+
+# images
+**/wwwroot/Images
