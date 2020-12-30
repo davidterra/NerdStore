@@ -12,7 +12,7 @@ namespace NerdStore.Catalogo.Domain.Events
 
         public async Task Handle(ProdutoAbaixoEstoqueEvent message, CancellationToken cancellationToken)
         {
-            var produto = await _produtoRepository.ObterPorId(message.AgreggateId);
+            var produto = await _produtoRepository.ObterPorId(message.AggregateId);
 
               // Enviar um email para aquisicao de mais produtos.   
         }
