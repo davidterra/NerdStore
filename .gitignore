@@ -37,3 +37,6 @@ bld/
 
 # images
 **/wwwroot/Images
+
+# vs
+**/.vs
