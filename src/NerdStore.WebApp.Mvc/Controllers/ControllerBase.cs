@@ -22,19 +22,12 @@ namespace NerdStore.WebApp.Mvc.Controllers
             _mediatorHandler = mediatorHandler;
         }
 
-        protected bool OperacaoValida()
-        {
-            return !_notifications.TemNotificacao();
-        }
+        protected bool OperacaoValida() => !_notifications.TemNotificacao();
 
-        protected IEnumerable<string> ObterMensagensErro()
-        {
-            return _notifications.ObterNotificacoes().Select(c => c.Value).ToList();
-        }
+        protected IEnumerable<string> ObterMensagensErro() 
+            => _notifications.ObterNotificacoes().Select(c => c.Value).ToList();
 
-        protected void NotificarErro(string codigo, string mensagem)
-        {
-            _mediatorHandler.PublicarNotificacao(new DomainNotification(codigo, mensagem));
-        }
+        protected void NotificarErro(string codigo, string mensagem) 
+            => _mediatorHandler.PublicarNotificacao(new DomainNotification(codigo, mensagem));
     }
 }
