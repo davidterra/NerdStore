@@ -17,6 +17,7 @@ using NerdStore.WebApp.Mvc.Setup;
 using NerdStore.WebApp.Mvc.Data;
 using NerdStore.Catalogo.Application.AutoMapper;
 using NerdStore.Catalogo.Data;
+using NerdStore.Vendas.Data;
 
 namespace NerdStore.WebApp.Mvc
 {
@@ -45,7 +46,10 @@ namespace NerdStore.WebApp.Mvc
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<CatalogoContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));         
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDbContext<VendasContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 

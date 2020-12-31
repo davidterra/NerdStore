@@ -25,6 +25,8 @@
     <ProjectReference Include="..\Services\Catalogo\NerdStore.Catalogo.Domain\NerdStore.Catalogo.Domain.csproj" />
     <ProjectReference Include="..\Services\Vendas\NerdStore.Vendas.Application\NerdStore.Vendas.Application.csproj" />
     <ProjectReference Include="..\services\Core\NerdStore.Core\NerdStore.Core.csproj" />
+    <ProjectReference Include="..\Services\Vendas\NerdStore.Vendas.Data\NerdStore.Vendas.Data.csproj" />
+    <ProjectReference Include="..\Services\Vendas\NerdStore.Vendas.Domain\NerdStore.Vendas.Domain.csproj" />
   </ItemGroup>
 
 </Project>
