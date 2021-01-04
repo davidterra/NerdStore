@@ -1,3 +1,4 @@
+using EventSourcing;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using NerdStore.Catalogo.Application.Services;
@@ -6,6 +7,7 @@ using NerdStore.Catalogo.Data.Repository;
 using NerdStore.Catalogo.Domain;
 using NerdStore.Catalogo.Domain.Events;
 using NerdStore.Core.Communication.Mediator;
+using NerdStore.Core.Data.EventSourcing;
 using NerdStore.Core.Messages.CommonMessages.IntegrationEvents;
 using NerdStore.Core.Messages.CommonMessages.Notifications;
 using NerdStore.Pagamentos.AntiCorruption;
@@ -31,6 +33,10 @@ namespace NerdStore.WebApp.Mvc.Setup
 
             // Notifications
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
+
+            // Event Sourcing
+            services.AddSingleton<IEventStoreService, EventStoreService>();
+            services.AddSingleton<IEventSourcingRepository, EventSourcingRepository>();
 
             // Catalogo
             services.AddScoped<IProdutoRepository, ProdutoRepository>();

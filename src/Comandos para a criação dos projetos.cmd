@@ -45,3 +45,6 @@ dotnet new classlib -f net5.0 --output ./src/Services/Pagamentos/NerdStore.Pagam
 dotnet sln add .\src\Services\Pagamentos\NerdStore.Pagamentos.Business\NerdStore.Pagamentos.Business.csproj
 dotnet sln add .\src\Services\Pagamentos\NerdStore.Pagamentos.Data\NerdStore.Pagamentos.Data.csproj
 dotnet sln add .\src\Services\Pagamentos\NerdStore.Pagamentos.AntiCorruption\NerdStore.Pagamentos.AntiCorruption.csproj
+
+dotnet add package EventStore.Client
+dotnet add package Microsoft.Extensions.Configuration --version 5.0.0
